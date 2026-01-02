@@ -12,14 +12,14 @@ var app = builder.Build();
 // example
 app.Use(async (context, next) =>
 {
-    await context.Response.WriteAsync("welcome to Programmentor  regarding middle wares");
+    await context.Response.WriteAsync("welcome to Programmentor  regarding middle wares  gvghvhvh");
     await next(context);
 }
 );
-app.MapGet("/", () => "Hello World!");
+app.MapGet("/", () => "Hello World! hello world");
 
 app.Run(async (context) =>
-await context.Response.WriteAsync("welcome to Programmentor"));
+await context.Response.WriteAsync("welcome to Programmentor this was very informative"));
 
 //middle wares have acess to all the requests and responses
 // order of middlewares is important as middel wares execute as per there order
