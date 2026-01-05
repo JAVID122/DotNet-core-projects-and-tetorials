@@ -1,8 +1,8 @@
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddControllersWithViews();
+//builder.Services.AddControllersWithViews();
 var app = builder.Build();
 
-//app.MapGet("/", () => "Hello World!")
+//app.MapGet("/Home", () => "Hello World!");
 //app.Run(async (context) =>
 //await context.Response.WriteAsync("welcome to Programmentor"));
 
@@ -50,9 +50,85 @@ var app = builder.Build();
 //app.MapDefaultControllerRoute();
 // if we do not want to call index controller by default then we will not call the above method 
 // insted we will define below which contoller to call by setting a pattern
+// 
 
-app.MapControllerRoute(
-  name: "default",
- pattern: "{controller=User}/{action=index}/{id?}"
-   );
+// in conventional based Routing ,the route is determined based on the conventions defined
+// .. in the route templates which will map the incoming Requests(i,e URLs) to controllers and their action methods
+
+// In ASP.NET Core MVC application ,the Convention based Routes are defined within the Program.cs class file
+
+// In ASP.NET core MVC application ,it is the controller action method that is going to handle the incoming Requests i,e URLs
+
+// for example if we issue a request to the "Home/index" URL then it is the index action method of Home Controller class which is going to handle the request
+
+
+//app.MapControllerRoute(
+//  name: "default",
+// pattern: "{controller=User}/{action=About}/{id?}"
+//   );
+
+
+// Now let us start Attribute based Routing
+// In Attribute-Based Routing ,[Route] attribute is used to define the routes
+
+// in order to implement attribute routing we need the below middleware
+//app.MapControllers();
+
+
+// let us understand the concepts of Get ,POST,PUT AND DELETE WITH BELOW EXAMPLE
+
+app.UseRouting();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapGet("/Home", async (context) =>
+
+    {
+        await context.Response.WriteAsync("this is home page..");
+    
+
+       });
+
+    endpoints.MapPost("/Home", async (context) =>
+
+    {
+        await context.Response.WriteAsync("this is home page..... Post");
+
+
+    });
+
+    endpoints.MapPut("/Home", async (context) =>
+
+    {
+        await context.Response.WriteAsync("this is home page......Put");
+
+
+    });
+
+    endpoints.MapDelete("/Home", async (context) =>
+
+    {
+        await context.Response.WriteAsync("this is home page......Delete");
+
+
+    });
+
+    // An endpoint is something that can be : selected by matching the URL and HTTP method.
+});
+
+
+/// let us understand now CONTROLLERS 
+  //     R          GET DATA   Updates
+//USER > Controller > > MODEL > VIEW
+
+// controller cummunicates between view and model
+
+// Browser > Routing > Controler > Action methods > view
+
+// controller is nothing  but class of C#  inside controller we have written differnet action methods when request is send it calls one of the action methods
+// controller manages the flow of the application
+// controller is used to define  and group a set of actions
+// controller is responsible for intercepting incoming requests and executing the appropriate application code
+// controller communicates with the model of the appliaction and selects the required view to be rendered for the request
+// allows seperating the business logic of the application from the presentation logic
 app.Run();
