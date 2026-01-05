@@ -1,3 +1,11 @@
+using Microsoft.AspNetCore.Mvc.ActionConstraints;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.Blazor;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using System.Reflection.Metadata;
+using System.Runtime.Intrinsics.X86;
+
 var builder = WebApplication.CreateBuilder(args);
 //builder.Services.AddControllersWithViews();
 var app = builder.Build();
@@ -131,4 +139,89 @@ app.UseEndpoints(endpoints =>
 // controller is responsible for intercepting incoming requests and executing the appropriate application code
 // controller communicates with the model of the appliaction and selects the required view to be rendered for the request
 // allows seperating the business logic of the application from the presentation logic
+
+
+
+
+// Action methods
+ // Actions are the methods in controller class which are responsible for returning the view or Jason data.
+ // Action methods are public methods in controller classses
+
+
+
+// what is dependency Injection in ASP.NET core? 
+
+// Dependency Injection (DI) is a software design pattern that allows us to develop loosely coupled application
+
+//ANS: This is a process in which we are injecting the object of a class into another class that depends on that object.
+
+//public class B
+//{
+//    public int MethodB()
+//    {
+//        return 100;
+//    }
+//}
+//public class A
+//{
+//    public static void Main (string[] args)
+//    {
+//        B.b = new B();
+//        int a = b.MethodB();
+//        Console.WriteLine(a);
+
+//    }
+//}
+
+// Why to use Dependency Injection? OR what problem does Dependency Injection solve?
+
+//public class MathStudent
+//{
+//    public int GetStudentCount()
+//    {
+//        return 50;
+//}
+
+
+//    public class FirstController : controller {
+    //public int Index()
+    //    {
+    //        MathStudent cls = new MathStudent();
+    //        return cls.GetStudentCount();
+    //    }
+    //}
+
+    // now if i am told to create a Science student class i will cretae ;like below example
+
+    //public class ScienceStudent
+    //{
+    //    public int GetScienceCount() {
+    //        return 100;
+
+    //    }
+
+        // now i will replace it in one controller what if there many controllers like 100 0f them which are creting the object of Math student class now when  we are asked to chnage it to Science student class then we  have to manually change it every where
+        // // then we have to test each and every contrioller that will be headace then agin tommorow we will be asked to create another class again same problem
+        // to get rid of this problem we need dependency injection concept 
+        // now if we will create differnet classes then we do not  need to  make chnages in each controller 
+
+
+        /// next question is how to implement the dependency injection
+
+
+// Tight Coupling 
+
+// . Tight coupling is when a group of classes are highly dependent on one another
+// suppose Car class will use both Engine and Brakes means it will need to create object of both classes to implement there properties
+     
+// loose Coupling means that the classes are indepent of each other
+  // like Stuent is not dependent on teacher and Admin classes
+  // 
+  // Dependence injection is achived using Interfaces.
+  // interfaces are a powerful tool to use for decoupling
+
+// Dependence Injection is basically providing the objects that
+// an object ,instead of having it contruct the object themselves
+// Di is a technique whereby one object supplies the dependencies of another object
+
 app.Run();
